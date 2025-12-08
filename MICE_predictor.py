@@ -5,9 +5,10 @@ import pandas as pd
 import shap
 import matplotlib.pyplot as plt
 import io
+import xgboost as xgb  # 必须添加这行
 
 # Load the model
-model = joblib.load('XGBoost_best_model.json')
+model = joblib.load('XGBoost_best_model.pkl')
 
 # Define feature names used for the model
 feature_names = [
@@ -123,5 +124,6 @@ if st.button("预测"):
         st.error(f"预测过程中出错: {str(e)}")
 
         st.exception(e)  # 显示完整错误堆栈
+
 
 
