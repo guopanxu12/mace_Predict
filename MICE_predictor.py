@@ -18,7 +18,13 @@ feature_names = [
 st.title("急性冠状动脉综合征患者1年内发生心血管不良事件风险预测")
 
 # Age: numerical input
-Age = st.number_input("年龄 (岁):", min_value=0, max_value=100, value=45)
+Age = st.number_input(
+    "年龄 (岁):", 
+    min_value=0.0,    # 保持float类型（解决错误）
+    max_value=100.0,  # 保持float类型
+    value=45.0,       # 保持float类型
+    format="%d"       # ✅ 关键：显示为整数格式
+)
 
 # Drinking: categorical selection
 Drinking = st.selectbox("是否饮酒 (0=否, 1=是):", options=[0, 1], format_func=lambda x: '否 (0)' if x == 0 else '是 (1)')
@@ -37,11 +43,10 @@ LDLC = st.number_input("低密度脂蛋白胆固醇 (LDL-C, mmol/L):", min_value
 
 # PTINR: numerical input (keeping high max as per your data)
 PTINR = st.number_input(
-    "凝血相关指标 (PTINR):", 
-    min_value=0, 
-    max_value=6000, 
-    value=1.0,
-    help="注：根据临床数据，该指标可能有较高数值。单位：秒×mm²（或其他单位，取决于检测方法）"
+    "凝血相关指标 (PTINR):",
+    min_value=0.0,
+    max_value=5000.0,
+    value=1.0 
 )
 
 # Process inputs and make predictions
@@ -115,4 +120,5 @@ if st.button("预测"):
 
     except Exception as e:
         st.error(f"预测过程中出错: {str(e)}")
+
         st.exception(e)  # 显示完整错误堆栈
