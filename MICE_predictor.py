@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import io
 
 # Load the model
-model = joblib.load('XGBoost_best_model.pkl')
+model = joblib.load('XGBoost_best_model.json')
 
 # Define feature names used for the model
 feature_names = [
@@ -123,4 +123,5 @@ if st.button("预测"):
         st.error(f"预测过程中出错: {str(e)}")
 
         st.exception(e)  # 显示完整错误堆栈
+
 
