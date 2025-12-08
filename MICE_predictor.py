@@ -20,10 +20,11 @@ st.title("急性冠状动脉综合征患者1年内发生心血管不良事件风
 # Age: numerical input
 Age = st.number_input(
     "年龄 (岁):", 
-    min_value=0.0,    # 保持float类型（解决错误）
-    max_value=100.0,  # 保持float类型
-    value=45.0,       # 保持float类型
-    format="%d"       # ✅ 关键：显示为整数格式
+    min_value=0.0,    # 必须是 float
+    max_value=100.0,  # 必须是 float
+    value=45.0,       # 必须是 float
+    format="%d",      # 显示为整数（不显示.0）
+    step=1.0          # 必须指定 step 为 float
 )
 
 # Drinking: categorical selection
@@ -122,3 +123,4 @@ if st.button("预测"):
         st.error(f"预测过程中出错: {str(e)}")
 
         st.exception(e)  # 显示完整错误堆栈
+
